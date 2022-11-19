@@ -12,8 +12,7 @@ services:
     ports:
       - "$FLASKPORT:$FLASKPORT"
       - "$EXPOSEPORT:80"
-    depends_on:
-      - db
+
   db:
     image: mysql:5.7
     env_file:
