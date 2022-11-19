@@ -11,7 +11,7 @@ services:
       - .env
     ports:
       - "$FLASKPORT:$FLASKPORT"
-      - "80:80"
+      - "$EXPOSEPORT:80"
     depends_on:
       - db
   db:
@@ -19,12 +19,13 @@ services:
     env_file:
       - .env
     ports:
-      - "$SQLPORT:3306"
+      - "$SQLPORT:$SQLPORT"
 
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DB
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_TCP_PORT: $SQLPORT
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:rw
