@@ -6,11 +6,12 @@ import os
 
 app = Flask(__name__)
 
-
 def favorite_colors() -> List[Dict]:
     config = {
+        # this user has SELECT permissions only. If you wanted to update table entries, you would need to use the admin credentials.
         'user': os.environ['MYSQL_USER'],
         'password': os.environ['MYSQL_PASSWORD'],
+        ## if you wanted to use admin , you would use this user/password combination instead.
         # 'user': 'root',
         # 'password': os.environ['MYSQL_ROOT_PASSWORD'],
         'host': 'db',
@@ -19,7 +20,7 @@ def favorite_colors() -> List[Dict]:
     }
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
-    cursor.execute('SELECT * FROM favorite_colors')
+    cursor.execute('SELECT * FROM ' + os.environ['MYSQL_TABLE'])
     results = [{name: color} for (name, color) in cursor]
     cursor.close()
     connection.close()

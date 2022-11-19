@@ -2,12 +2,12 @@
 mysql -u root -p$MYSQL_ROOT_PASSWORD << EOF
   use $MYSQL_DB;
 
-  CREATE TABLE favorite_colors (
+  CREATE TABLE $MYSQL_TABLE (
     name VARCHAR(20),
     color VARCHAR(10)
   );
 
-  INSERT INTO favorite_colors
+  INSERT INTO $MYSQL_TABLE
     (name, color)
   VALUES
     ('Lancelot', 'blue'),
