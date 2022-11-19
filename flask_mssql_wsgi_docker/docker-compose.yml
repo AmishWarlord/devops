@@ -3,8 +3,6 @@ services:
   app:
     build: 
       context: ./app
-      args:
-        - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
     links:
       - "db"
     env_file:
@@ -12,14 +10,12 @@ services:
     ports:
       - "$FLASKPORT:$FLASKPORT"
       - "$EXPOSEPORT:80"
-
   db:
     image: mysql:5.7
     env_file:
       - .env
     ports:
       - "$SQLPORT:$SQLPORT"
-
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DB
