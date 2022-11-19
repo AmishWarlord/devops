@@ -1,0 +1,2 @@
+# This project creates a simple uWSGI server with flask and a MSSQL database backend. 
+## Make sure to fill out the .env.example file and then change its name to ".env" before running "docker-compose up"
